@@ -7,6 +7,7 @@ func Array02() {
 
 	*array[0] = 10
 	*array[1] = 20
+	//*array[2] = 20
 
 	for i, v := range array {
 		if v != nil {
