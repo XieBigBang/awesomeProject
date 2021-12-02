@@ -29,7 +29,8 @@ func Slice01() {
 	for i, v := range sl03 {
 		fmt.Printf("%d  %d\n", i, v)
 	}
-	fmt.Printf("%d\n", sl03)
+	fmt.Printf("%v\n", sl03)
+	fmt.Printf("sl03 len %v  cap %v\n", len(sl03), cap(sl03))
 	fmt.Printf("=============\n")
 
 	var sl04 []int
@@ -82,4 +83,46 @@ func Slice01() {
 	fmt.Printf("sl07 len %d cap %d\n", len(sl07), cap(sl07))
 	fmt.Printf("sl10 len %d cap %d\n", len(sl10), cap(sl10)) // sl10 len 6 cap 10
 
+	fmt.Printf("=============\n")
+	sl11 := []string{"a", "b", "c", "d", "e"}
+	// newslice := slice[i:j:k]
+	// len(newslice) = j-i
+	// cap(newslice) = k-i
+	sl12 := sl11[1:2:3]
+	// sl12 := sl11[1:2:6]  // runtime error: slice bounds out of range [::6] with capacity 5
+	sl12_ := append(sl12, "bbb") // appends elements to the end of a slice
+	sl12_[0] = "kkkk"
+
+	fmt.Printf("sl11 len %d  cap %d\n", len(sl11), cap(sl11)) // sl11 len 5  cap 5
+	fmt.Printf("sl12 len %d  cap %d\n", len(sl12), cap(sl12)) // sl12 len 1  cap 2
+	fmt.Printf("sl11 [] = %v\n", sl11)
+	fmt.Printf("sl12 [] = %v\n", sl12)
+	fmt.Printf("append sl12  = %v\n", sl12_)
+	fmt.Printf("sl11 [] = %v\n", sl11)
+	fmt.Printf("sl12 [] = %v\n", sl12)
+
+	fmt.Printf("=============\n")
+	sl13 := []string{"a", "b", "c", "d", "d", "e"}
+	sl14 := sl13[3:4:4]
+	sl15 := append(sl14, "aaaa") // a new underlying array
+	sl15[0] = "bbbb"
+	fmt.Printf("sl13 = %v\n", sl13)
+	fmt.Printf("sl14 = %v\n", sl14)
+	fmt.Printf("sl15 = %v\n", sl15)
+
+	fmt.Printf("=============\n")
+	sl16 := []int{1, 2, 3, 4, 5, 6}
+	for i, v := range sl16 {
+		fmt.Printf("i=%d v=%d &v=%v &sl16[%d]=%v\n", i, v, &v, i, &sl16[i])
+	}
+	/**
+	i=0 v=1 &v=0xc00000a138 &sl16[0]=0xc00000c2d0
+	i=1 v=2 &v=0xc00000a138 &sl16[1]=0xc00000c2d8
+	i=2 v=3 &v=0xc00000a138 &sl16[2]=0xc00000c2e0
+	i=3 v=4 &v=0xc00000a138 &sl16[3]=0xc00000c2e8
+	i=4 v=5 &v=0xc00000a138 &sl16[4]=0xc00000c2f0
+	i=5 v=6 &v=0xc00000a138 &sl16[5]=0xc00000c2f8
+
+	v 是副本，迭代过程中每个元素的副本存在同一个地址里
+	*/
 }
