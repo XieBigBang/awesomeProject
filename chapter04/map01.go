@@ -1,4 +1,4 @@
-package chapter01
+package chapter04
 
 import (
 	"fmt"
@@ -6,6 +6,7 @@ import (
 
 func Map01() {
 	dict := make(map[string]int)
+	dict["a"] = 123123
 	fmt.Printf("map len %v\n", len(dict))
 	fmt.Printf("================\n")
 
