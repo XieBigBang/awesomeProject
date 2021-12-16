@@ -16,7 +16,7 @@ type admin struct {
 
 type Duration int
 
-func MyStruct() {
+func Test0501() {
 	var user01 user
 	fmt.Println(user01)
 	fmt.Println(user01.name)
