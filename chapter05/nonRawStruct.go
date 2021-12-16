@@ -13,10 +13,9 @@ type Tax struct {
 }
 
 func NewTax(num string) (t *Tax, err error) {
-	t2 := &Tax{
-		tax: &tax{
-			"", 0, 0,
-		},
+	t2 := &Tax{&tax{
+		"", 0, 0,
+	},
 	}
 	t2.num = num
 	t2.positionX = 0
