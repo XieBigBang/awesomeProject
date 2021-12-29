@@ -43,14 +43,14 @@ func doWork(worker int, jq chan int) {
 	for {
 		job, ok := <-jq
 		if !ok {
-			fmt.Printf("there are no new jobs!! worker %v out of line!!\n", worker)
+			fmt.Printf("there are no new jobs!! main %v out of line!!\n", worker)
 			break
 		}
 
-		fmt.Printf("worker %v is doing the job %v\n", worker, job)
+		fmt.Printf("main %v is doing the job %v\n", worker, job)
 		n := rand.Intn(5)
 		time.Sleep(time.Duration(n) * 1000 * time.Millisecond)
-		fmt.Printf("worker %v took %v secend finish the jos %v\n", worker, n, job)
+		fmt.Printf("main %v took %v secend finish the jos %v\n", worker, n, job)
 	}
 
 }
